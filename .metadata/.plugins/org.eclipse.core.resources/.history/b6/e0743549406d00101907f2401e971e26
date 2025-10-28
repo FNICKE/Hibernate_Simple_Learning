@@ -1,0 +1,37 @@
+package com.jsp.driver;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
+import com.jsp.entity.Student;
+import com.jsp.entity.Subject;
+
+public class Insert2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		EntityManager entityManager = Persistence.createEntityManagerFactory("sachin").createEntityManager();
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		
+		Student student = entityManager.find(Student.class, 1);
+		List<Subject> list1 = student.getSubjects();
+		list1.add(subject);
+		
+		
+		Subject subject = entityManager.find(Subject.class, 3);
+		List<Student> list2 = subject.getStudents();
+		
+		list2.add(student);
+		
+		entityTransaction.begin();
+		entityManager.merge(student);
+		entityManager.merge(subject);
+		entityTransaction.commit();
+
+	}
+
+}

@@ -1,0 +1,29 @@
+package com.jsp.driver;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
+import com.jsp.entity.Car;
+import com.jsp.entity.Engin;
+
+public class Delete {
+	public static void main(String[] args) {
+		
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("sachin");
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		
+		
+		Car car = entityManager.find(Car.class, 101);
+		Engin engine = car.getEngine();
+		car.setEngine(null);
+		
+		entityTransaction.begin();
+		entityManager.remove(engine);
+		entityTransaction.commit();
+		
+	}
+
+}
