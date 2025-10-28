@@ -1,8 +1,0 @@
-package com.jsp.driver;
-
-public class Update {
-	
-		public static void main(String[] args) {
-			
-		}
-}
